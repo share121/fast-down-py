@@ -143,27 +143,68 @@ class UrlInfo:
         """返回清洗后的安全文件名。"""
         ...
 
-class Event:
-    """
-    下载过程中的事件对象。
-    """
+class PrefetchErrorEvent:
+    type: Literal["PrefetchError"]
+    message: str
 
-    type: Literal[
-        "PrefetchError",
-        "Pulling",
-        "PullError",
-        "PullTimeout",
-        "PullProgress",
-        "Pushing",
-        "PushError",
-        "PushProgress",
-        "Flushing",
-        "FlushError",
-        "Finished",
-    ]
-    id: int | None
-    message: str | None
-    range: tuple[int, int] | None
+class PullingEvent:
+    type: Literal["Pulling"]
+    id: int
+
+class PullErrorEvent:
+    type: Literal["PullError"]
+    id: int
+    message: str
+
+class PullTimeoutEvent:
+    type: Literal["PullTimeout"]
+    id: int
+
+class PullProgressEvent:
+    type: Literal["PullProgress"]
+    id: int
+    range: tuple[int, int]
+
+class PushingEvent:
+    type: Literal["Pushing"]
+    id: int
+    range: tuple[int, int]
+
+class PushErrorEvent:
+    type: Literal["PushError"]
+    id: int
+    message: str
+    range: tuple[int, int]
+
+class PushProgressEvent:
+    type: Literal["PushProgress"]
+    id: int
+    range: tuple[int, int]
+
+class FlushingEvent:
+    type: Literal["Flushing"]
+
+class FlushErrorEvent:
+    type: Literal["FlushError"]
+    message: str
+
+class FinishedEvent:
+    type: Literal["Finished"]
+    id: int
+
+Event = (
+    PrefetchErrorEvent
+    | PullingEvent
+    | PullErrorEvent
+    | PullTimeoutEvent
+    | PullProgressEvent
+    | PushingEvent
+    | PushErrorEvent
+    | PushProgressEvent
+    | FlushingEvent
+    | FlushErrorEvent
+    | FinishedEvent
+)
 
 class DownloadTask:
     """
