@@ -14,6 +14,11 @@ impl CancellationToken {
         Self { token }
     }
 
+    pub fn child_token(&self) -> Self {
+        let token = self.token.child_token();
+        Self { token }
+    }
+
     pub fn cancel(&self) {
         self.token.cancel();
     }
