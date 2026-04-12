@@ -12,12 +12,12 @@ crate-type = ["cdylib"]
 pyo3 = { version = "0.28", features = ["extension-module"] }
 pyo3-async-runtimes = { version = "0.28", features = ["tokio-runtime"] }
 bytes = "1.11.1"
-fast-down-ffi = { version = "0.2.5", features = ["file", "mem", "reqwest-tls"] }
+fast-down-ffi = { version = "0.2.7", features = ["file", "mem", "reqwest-tls"] }
 parking_lot = "0.12.5"
-sanitize-filename = "0.6.0"
-tokio = { version = "1.51.0", features = ["full"] }
+tokio = { version = "1.51.1", features = ["full"] }
 tokio-util = "0.7.18"
 url = "2.5.8"
+path_helper = { version = "0.1.2", features = ["sanitize"] }
 
 [lints.clippy]
 all = { level = "deny", priority = -1 }
